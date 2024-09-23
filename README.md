@@ -36,7 +36,7 @@ stopwatch.start();
 await new Promise((resolve) => setTimeout(resolve, 150));
 stopwatch.stop();
 
-console.log(stopwatch.getElapsedTime()); // 150
+console.log(stopwatch.getElapsedTime());
 ```
 
 ## Contributing
