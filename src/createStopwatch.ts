@@ -6,9 +6,9 @@
  * @property {function(): number} getElapsedTime - Returns the elapsed time in milliseconds.
  */
 export type Stopwatch = {
-  start: () => void;
-  stop: () => void;
-  reset: () => void;
+  start: () => Stopwatch;
+  stop: () => Stopwatch;
+  reset: () => Stopwatch;
   getElapsedTime: () => number;
 };
 
@@ -27,23 +27,31 @@ export const createStopwatch = (): Stopwatch => {
         startTime = Date.now() - elapsedTime;
         running = true;
       }
+
+      return this;
     },
     stop() {
       if (running) {
         elapsedTime = Date.now() - startTime!;
         running = false;
       }
+
+      return this;
     },
     reset() {
       elapsedTime = 0;
+
       if (running) {
         startTime = Date.now();
       }
+
+      return this;
     },
     getElapsedTime() {
       if (running) {
         return Date.now() - startTime!;
       }
+
       return elapsedTime;
     },
   };
